@@ -9,6 +9,6 @@ services:
     env_file:
       - .env
     volumes:
-      - .:/app
-      - /app/node_modules
-    command: npm start
+      - .:/app       # Mount source code
+      - /app/node_modules  # Prevent overwriting node_modules inside container
+    command: npm run dev   # 👈 Use nodemon
