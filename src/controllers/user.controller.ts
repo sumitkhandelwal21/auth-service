@@ -59,8 +59,8 @@ export const updateProfile = async (req: AuthRequest, res: Response) => {
 
     if (firstName) user.firstName = firstName;
     if (lastName) user.lastName = lastName;
-    if (phone !== undefined) user.phone = phone;
-    if (avatar !== undefined) user.avatar = avatar;
+    if (phone !== undefined) user.phone = phone ?? null;
+    if (avatar !== undefined) user.avatar = avatar ?? null;
 
     await userRepository.save(user);
 
@@ -73,10 +73,10 @@ export const updateProfile = async (req: AuthRequest, res: Response) => {
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     };
-    if (user.phone !== undefined) {
+    if (user.phone != null) {
       userResponse.phone = user.phone;
     }
-    if (user.avatar !== undefined) {
+    if (user.avatar != null) {
       userResponse.avatar = user.avatar;
     }
 

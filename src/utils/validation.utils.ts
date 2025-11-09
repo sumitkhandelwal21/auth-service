@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import Joi from "joi";
 
 export const registerValidation = Joi.object({
   email: Joi.string().email().required(),
@@ -6,14 +6,14 @@ export const registerValidation = Joi.object({
   firstName: Joi.string().min(2).max(50).required(),
   lastName: Joi.string().min(2).max(50).required(),
   phone: Joi.string().optional(),
-  avatar: Joi.string().optional()
+  avatar: Joi.string().optional(),
 });
 
 export const loginValidation = Joi.object({
   email: Joi.string().email().required(),
-  password: Joi.string().required()
+  password: Joi.string().required(),
 });
 
 export const refreshTokenValidation = Joi.object({
-  refreshToken: Joi.string().required()
+  refreshToken: Joi.string().required(),
 });

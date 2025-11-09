@@ -25,17 +25,17 @@ export class User {
   @Column()
   lastName!: string;
 
-  @Column({ nullable: true })
-  phone?: string | undefined;
+  @Column({ type: "varchar", nullable: true })
+  phone: string | null = null;
 
-  @Column({ nullable: true })
-  avatar?: string | undefined;
+  @Column({ type: "varchar", nullable: true })
+  avatar: string | null = null;
 
   @Column({ default: true })
   isActive!: boolean;
 
-  @Column({ nullable: true, default: null })
-  refreshToken!: string | null;
+  @Column({ type: "varchar", nullable: true, default: null })
+  refreshToken: string | null = null;
 
   @CreateDateColumn()
   createdAt!: Date;

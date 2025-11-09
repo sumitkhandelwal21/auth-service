@@ -39,8 +39,8 @@ export const register = async (req: Request, res: Response) => {
     user.password = hashedPassword;
     user.firstName = firstName;
     user.lastName = lastName;
-    user.phone = phone;
-    user.avatar = avatar;
+    user.phone = phone ?? null;
+    user.avatar = avatar ?? null;
 
     await userRepository.save(user);
 
@@ -61,10 +61,10 @@ export const register = async (req: Request, res: Response) => {
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     };
-    if (user.phone !== undefined) {
+    if (user.phone != null) {
       userResponse.phone = user.phone;
     }
-    if (user.avatar !== undefined) {
+    if (user.avatar != null) {
       userResponse.avatar = user.avatar;
     }
 
@@ -122,10 +122,10 @@ export const login = async (req: Request, res: Response) => {
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     };
-    if (user.phone !== undefined) {
+    if (user.phone != null) {
       userResponse.phone = user.phone;
     }
-    if (user.avatar !== undefined) {
+    if (user.avatar != null) {
       userResponse.avatar = user.avatar;
     }
 
