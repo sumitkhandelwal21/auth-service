@@ -1,9 +1,8 @@
-import express from 'express';
-import 'reflect-metadata';
-import * as dotenv from 'dotenv';
-import { AppDataSource } from './data-source';
-import authRouter from './routes/auth';
-import userRouter from './routes/user';
+import express from "express";
+import "reflect-metadata";
+import * as dotenv from "dotenv";
+import { AppDataSource } from "./data-source";
+import appRouter from "./routes/app.routes";
 
 dotenv.config();
 
@@ -12,18 +11,17 @@ const port = 3000;
 
 app.use(express.json());
 
-app.use('/auth', authRouter);
-app.use('/user', userRouter);
+app.use("/api/v1", appRouter);
 
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+app.get("/health", (req, res) => {
+  res.json({ status: "OK", timestamp: new Date().toISOString() });
 });
 
 AppDataSource.initialize()
   .then(() => {
-    console.log('Database connection established');
+    console.log("Database connection established");
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
     });
   })
-  .catch((error) => console.log('Database connection failed:', error));
+  .catch((error) => console.log("Database connection failed:", error));
