@@ -44,14 +44,6 @@ export const register = async (req: Request, res: Response) => {
 
     await userRepository.save(user);
 
-    const { accessToken, refreshToken } = generateTokens({
-      userId: user.id,
-      email: user.email,
-    });
-
-    user.refreshToken = refreshToken;
-    await userRepository.save(user);
-
     const userResponse: UserResponseDto = {
       id: user.id,
       email: user.email,
@@ -71,8 +63,6 @@ export const register = async (req: Request, res: Response) => {
     res.status(201).json({
       message: "User registered successfully",
       user: userResponse,
-      accessToken,
-      refreshToken,
     });
   } catch (error) {
     console.error("Registration error:", error);
