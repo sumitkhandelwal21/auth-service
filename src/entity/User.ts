@@ -25,7 +25,7 @@ export class User {
   @Column()
   lastName!: string;
 
-  @Column({ type: "varchar", nullable: true })
+  @Column({ type: "varchar", nullable: true, unique: true })
   phone: string | null = null;
 
   @Column({ type: "varchar", nullable: true })
@@ -33,6 +33,9 @@ export class User {
 
   @Column({ default: true })
   isActive!: boolean;
+
+  @Column({ type: "varchar", default: "user" })
+  role!: string;
 
   @Column({ type: "varchar", nullable: true, default: null })
   refreshToken: string | null = null;

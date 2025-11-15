@@ -7,6 +7,7 @@ export interface AuthRequest extends Request {
   user?: {
     userId: string;
     email: string;
+    role: string;
   };
 }
 
@@ -33,7 +34,7 @@ export const authMiddleware = async (
     const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOne({
       where: { id: decoded.userId },
-      select: ["id", "email", "firstName", "lastName", "isActive"],
+      select: ["id", "email", "firstName", "lastName", "isActive", "role"],
     });
 
     if (!user) {
@@ -47,6 +48,7 @@ export const authMiddleware = async (
     req.user = {
       userId: user.id,
       email: user.email,
+      role: user.role,
     };
 
     next();
