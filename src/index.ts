@@ -3,6 +3,7 @@ import "reflect-metadata";
 import * as dotenv from "dotenv";
 import { AppDataSource } from "./data-source";
 import appRouter from "./routes/app.routes";
+import { rateLimitMiddleware } from "./middleware/rateLimit.middleware";
 
 dotenv.config();
 
@@ -10,6 +11,8 @@ const app = express();
 const port = Number(process.env.PORT ?? 3001);
 
 app.use(express.json());
+app.set("trust proxy", 1);
+app.use(rateLimitMiddleware);
 
 app.use((req, _res, next) => {
   console.log(`[pid:${process.pid}] ${req.method} ${req.originalUrl}`);
