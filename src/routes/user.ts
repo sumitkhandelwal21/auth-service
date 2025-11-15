@@ -4,7 +4,9 @@ import { authMiddleware } from "../middleware/auth.middleware";
 
 const router = Router();
 
-router.get("/profile", authMiddleware, getProfile);
-router.put("/profile", authMiddleware, updateProfile);
+router.use(authMiddleware);
+
+router.get("/profile", getProfile);
+router.put("/profile", updateProfile);
 
 export default router;

@@ -7,7 +7,9 @@
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migration:run": "typeorm migration:run -d ./src/data-source.ts",
+    "migration:revert": "typeorm migration:revert -d ./src/data-source.ts",
+    "migration:show": "typeorm migration:show -d ./src/data-source.ts"
   },
   "repository": {
     "type": "git",
