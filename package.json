@@ -7,9 +7,9 @@
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "migration:run": "typeorm migration:run -d ./src/data-source.ts",
-    "migration:revert": "typeorm migration:revert -d ./src/data-source.ts",
-    "migration:show": "typeorm migration:show -d ./src/data-source.ts"
+    "migration:run": "typeorm migration:run -d ./dist/data-source.js",
+    "migration:revert": "typeorm migration:revert -d ./dist/data-source.js",
+    "migration:show": "typeorm migration:show -d ./dist/data-source.js"
   },
   "repository": {
     "type": "git",

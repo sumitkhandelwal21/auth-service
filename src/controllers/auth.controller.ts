@@ -20,7 +20,7 @@ export const register = async (req: Request, res: Response) => {
       return res.status(400).json({ message });
     }
 
-    const { email, password, firstName, lastName, phone, avatar } =
+    const { email, password, firstName, lastName, phone, avatar, role } =
       req.body as RegisterDto;
     const userRepository = AppDataSource.getRepository(User);
 
@@ -52,6 +52,7 @@ export const register = async (req: Request, res: Response) => {
     user.lastName = lastName;
     user.phone = phone ?? null;
     user.avatar = avatar ?? null;
+    user.role = role ?? "user";
 
     await userRepository.save(user);
 
@@ -66,6 +67,9 @@ export const register = async (req: Request, res: Response) => {
     };
     if (user.phone != null) {
       userResponse.phone = user.phone;
+    }
+    if (user.role != null) {
+      userResponse.role = user.role;
     }
     if (user.avatar != null) {
       userResponse.avatar = user.avatar;

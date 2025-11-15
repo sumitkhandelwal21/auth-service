@@ -5,6 +5,7 @@ export interface RegisterDto {
   lastName: string;
   phone?: string;
   avatar?: string;
+  role?: "user" | "admin";
 }
 
 export interface LoginDto {
@@ -23,6 +24,7 @@ export interface UserResponseDto {
   lastName: string;
   phone?: string;
   avatar?: string;
+  role?: "user" | "admin";
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;

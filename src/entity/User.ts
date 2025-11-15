@@ -34,8 +34,8 @@ export class User {
   @Column({ default: true })
   isActive!: boolean;
 
-  @Column({ type: "varchar", default: "user" })
-  role!: string;
+  @Column({ type: "enum", enum: ["user", "admin"], default: "user" })
+  role!: "user" | "admin";
 
   @Column({ type: "varchar", nullable: true, default: null })
   refreshToken: string | null = null;

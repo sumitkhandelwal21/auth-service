@@ -7,6 +7,7 @@ export const registerValidation = Joi.object({
   lastName: Joi.string().min(2).max(50).required(),
   phone: Joi.string().optional(),
   avatar: Joi.string().optional(),
+  role: Joi.string().valid("user", "admin").optional(),
 });
 
 export const loginValidation = Joi.object({
