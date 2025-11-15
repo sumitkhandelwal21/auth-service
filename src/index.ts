@@ -11,6 +11,11 @@ const port = Number(process.env.PORT ?? 3001);
 
 app.use(express.json());
 
+app.use((req, _res, next) => {
+  console.log(`[pid:${process.pid}] ${req.method} ${req.originalUrl}`);
+  next();
+});
+
 app.use("/api/v1", appRouter);
 
 app.get("/health", (req, res) => {
@@ -19,9 +24,9 @@ app.get("/health", (req, res) => {
 
 AppDataSource.initialize()
   .then(() => {
-    console.log("Database connection established");
+    console.log(`Database connection established [pid:${process.pid}]`);
     app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
+      console.log(`Server is running on port ${port} [pid:${process.pid}]`);
     });
   })
   .catch((error) => console.log("Database connection failed:", error));
