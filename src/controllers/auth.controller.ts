@@ -116,7 +116,7 @@ export const login = async (req: Request, res: Response) => {
     });
 
     user.refreshToken = refreshToken;
-    await userRepository.save(user);
+    await userRepository.update({ id: user.id }, { refreshToken });
 
     const userResponse: UserResponseDto = {
       id: user.id,
@@ -167,7 +167,7 @@ export const refreshToken = async (req: Request, res: Response) => {
     });
 
     user.refreshToken = newRefreshToken;
-    await userRepository.save(user);
+    await userRepository.update({ id: user.id }, { refreshToken: newRefreshToken });
 
     res.json({
       accessToken,

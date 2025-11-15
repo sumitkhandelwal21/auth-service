@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { User } from "../entity/User";
+import { Not } from "typeorm";
 
 export const getAllUsers = async (_req: Request, res: Response) => {
   try {
     const userRepository = AppDataSource.getRepository(User);
     const users = await userRepository.find({
+      where: { role: Not("admin") },
       select: [
         "id",
         "email",
