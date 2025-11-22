@@ -19,6 +19,17 @@ app.use((req, _res, next) => {
 
 app.use("/api/v1", appRouter);
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "Auth Service is running",
+    version: "1.0.0",
+    endpoints: {
+      health: "/health",
+      api: "/api/v1"
+    }
+  });
+});
+
 app.get("/health", (req, res) => {
   res.json({ status: "OK", timestamp: new Date().toISOString() });
 });
