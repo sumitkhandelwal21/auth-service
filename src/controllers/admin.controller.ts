@@ -46,3 +46,16 @@ export const deleteUser = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+export const getUserCount = async (_req: Request, res: Response) => {
+  try {
+    const userRepository = AppDataSource.getRepository(User);
+    const count = await userRepository.count({
+      where: { role: Not("admin") },
+    });
+    res.json({ message: "User count retrieved successfully", count });
+  } catch (error) {
+    console.error("Get user count error:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
