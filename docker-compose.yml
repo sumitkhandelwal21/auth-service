@@ -24,6 +24,18 @@ services:
       retries: 20
       start_period: 10s
 
+  migrate:
+    build: .
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_HOST=db
+      - NODE_ENV=production
+    command: npm run migration:run:prod
+    depends_on:
+      db:
+        condition: service_healthy
+
   nginx:
     image: nginx:alpine
     ports:

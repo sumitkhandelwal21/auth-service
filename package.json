@@ -10,7 +10,9 @@
     "migration:run": "cross-env POSTGRES_HOST=localhost ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/data-source.ts",
     "migration:revert": "cross-env POSTGRES_HOST=localhost ts-node ./node_modules/typeorm/cli.js migration:revert -d ./src/data-source.ts",
     "migration:show": "cross-env POSTGRES_HOST=localhost ts-node ./node_modules/typeorm/cli.js migration:show -d ./src/data-source.ts",
-    "migration:generate": "cross-env POSTGRES_HOST=localhost ts-node ./node_modules/typeorm/cli.js migration:generate -d ./src/data-source.ts"
+    "migration:generate": "cross-env POSTGRES_HOST=localhost ts-node ./node_modules/typeorm/cli.js migration:generate -d ./src/data-source.ts",
+    "migration:run:prod": "typeorm migration:run -d ./dist/data-source.js",
+    "migration:revert:prod": "typeorm migration:revert -d ./dist/data-source.js"
   },
   "repository": {
     "type": "git",
