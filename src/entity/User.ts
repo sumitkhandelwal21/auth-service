@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BeforeInsert,
+  Index,
 } from "typeorm";
 import { randomUUID } from "crypto";
 
@@ -34,6 +35,7 @@ export class User {
   @Column({ default: true })
   isActive!: boolean;
 
+  @Index()
   @Column({ type: "enum", enum: ["user", "admin"], default: "user" })
   role!: "user" | "admin";
 
