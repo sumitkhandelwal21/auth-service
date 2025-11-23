@@ -6,7 +6,7 @@ import { Not } from "typeorm";
 export const getAllUsers = async (_req: Request, res: Response) => {
   try {
     const userRepository = AppDataSource.getRepository(User);
-    const users = await userRepository.find({
+    const [users, count] = await userRepository.findAndCount({
       where: { role: Not("admin") },
       select: [
         "id",
@@ -21,7 +21,7 @@ export const getAllUsers = async (_req: Request, res: Response) => {
         "updatedAt",
       ],
     });
-    res.json({ message: "Users retrieved successfully", users });
+    res.json({ message: "Users retrieved successfully", count, users });
   } catch (error) {
     console.error("Get all users error:", error);
     res.status(500).json({ message: "Internal server error" });
